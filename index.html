@@ -1,0 +1,109 @@
+<html>
+	<head>
+		<title> asSISsed:copy-paste-plugin voor SIS cijferlijsten</title>
+		<style>
+			.btn {
+				display: inline-block;
+				margin: 8px;
+				padding: 6px 8px;
+				background: #000;
+				color: #fff;
+				-moz-border-radius: 4px;
+				-webkit-border-radius: 4px;
+
+				font-family: Arial,sans-serif;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+<body>
+<h1>asSISsed: Knip-En-Plak-Excel-Cijfers-In-Sis plugin</h1>
+
+<img src="sissed.jpg" align=left width=150>
+<h2>Wat is het?</h2>
+Het overtikken van cijfers in een SIS cijferlijst is foutgevoelig, dom en tijdrovend werk.<br>
+Onderstaande plugin (UserScript) wordt na installatie actief zodra sis wordt geopend.<br>
+Via een tekstvak kun je twee Excel-kolommen met studentnummer+cijfer direct plakken in een SIS cijferlijst.<br>
+Het werkt via een stukje javascript dat aan de sis pagina wordt toegevoegd. <br>
+Dit kan met Chrome of Firefox.
+<br>
+<p>
+<p>
+Als de plugin al werkt staat hier de versie: <input class=psloginbutton value="nee" readonly="readonly">
+
+<h2> Installatie </h2>
+
+<em>Let op: Nu zijn ook decimale cijfers mogelijk. Update (v1.2.3). Kijk bij <a href="#de-installatie">DE-installatie</a> hoe je de oude weggooit.</em> Herlaad daarna de sis-pagina.
+
+<ol>
+<li>
+Installeer Chome als je dat niet hebt: <a href=https://www.google.com/chrome>https://www.google.com/chrome</a> of <br>
+als je liever Firefox gebruikt, installeer dan <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">de greasemonkey plugin</a>.
+<li>
+Heb je Chrome of Greasemonkey, klik dan deze 'install' link: <a class="btn" href="src/local/assissed.user.js">Install!</a>
+<br>
+Chrome gebruikers zien dit:<br>
+<img src="chrome-userscript.png">
+<br>
+Klik op continue/install als daarom gevraagd wordt. In Firefox+Greasemonkey ook op install klikken.
+<br>
+</ol>
+<h2> Gebruik </h2>
+<ol>
+<li>
+Ga naar de <a href="https://www.sis.hva.nl:8011/psp/S020PRD/?&cmd=login&languageCd=DUT" target=blank>Nederlandstalige sis</a> en negeer de browser compatibiliteits waarschuwingen als je chrome gebruikt.<br>
+
+<li>
+Ga naar centrum docent en open de cijferlijst waar je nog zoveel cijfers in moet vullen en selecteer eerst "Alles tonen" zodat alle studentennummers op een pagina staan:<br>
+<img src="siscijferlijst.png">
+<br>
+<li>
+Onderaan de cijferlijst is het userscript actief waarin studentnummer;cijfer combinaties uit excel kunnen worden geplakt:<br>
+<img src="sisaanvullen.png">
+<br>
+Plak hierin een selectie van studentnummer+cijfer regels. Er MOET een tab of PUNTkomma tussen het studentnummer en cijfer staan; een tab komt er standaard als je uit Excel twee kolommen kopieert. Klik dan op "Energize" en check of de cijfers zijn ingevuld en doe "opslaan".Cijfers mogen een komma bevatten (sinds versie 1.2.2).<br>
+Tip: geef eerst iedereen een GR en doe daarna de knip+plak aktie. Dat scheelt weer "GR" cijfers selecteren.
+
+</ol>
+<p>
+
+<br>
+<hr>
+Meer tips:
+<ol>
+<li> Misschien dat assissed "stoort" op sis pagina waar het vanaf moet blijven. GreaseMonkey (firefox) is dan makkelijk uit te schakelen door op het appje te klikken.
+<li> download de cijfers terug naar excel als je klaar bent en vergelijk deze excel lijst met je originele lijst ter controle.
+<br>
+<li> vergeet niet dat alleen cijfers worden ingevuld als het betreffende studentnummer <b>op de pagina</b> staat. Doe dus eerst "Alles tonen" anders kun je maar de eerste 20 studenten een cijfer geven. Update: bij meer dan 100 studenten de plak+energize+opslaan actie herhalen.
+<br>
+<li> het is geen probleem om de actie te herhalen. Alleen cijfers van overeenkomende studentnummers zullen worden ingevuld.
+<br>
+<li> Zorg dat je in Excel twee kolommen naast elkaar hebt met Studentnummer in de linker en Cijfer in de tweede. Verberg tussenliggende kolommen met rechtsklik+hide(verberg) in Excel. Doe daarna de kopie+plak actie.
+<br>
+<li> Om nog meer tijd te sparen maakt deze plugin het mogelijk om je hva wachtwoord in de browser op te slaan zodat je niet elke keer je wachtwoord hoeft in te tikken. Gebruik dit verstandig. (deze hack werkt nu alleen nog in Firefox)
+<br>
+<li>
+Als je fanatiek MS IExplorer gebruiker bent kun je deze als standaard blijven gebruiken en Chrome+Assissed alleen voor cijferinvoer gebruiken.
+<li>
+Verwijder of disable de plugin als je SIS ondersteuning van de helpdesk wil. Dit om spraakverwarring te voorkomen.
+<li>
+Voor uva-collega's die willen Beta-testen van UvA-aanpassingen op assissed: <a class="btn" href="src/local/assissed_uva.user.js">UvA_Install</a>. 
+</ol>
+
+<p>
+<A name="de-installatie">
+<h2> DE-installatie </h2>
+Mocht er een update zijn of wil je er vanaf, klik in Chrome dan op de steeksleutel+extra+extensies en verwijderen.<br>
+Bij greasemonkey gebruik je "manage user scripts" en remove of disable zoals in onderstaand plaatje te zien is.  Her-installeren of nieuwe versie installeren gaat via de install knop zoals in het eerste deel beschreven is.
+<br>
+<img src="sissed_remove.png" > <br>
+
+<p>
+<hr>
+Disclaimer: Koen Bollen en <a href="mailto:j.derriks@hva.nl">Jan Derriks</a> zijn niet aansprakelijk voor de geleden schade die je in de overgebleven vrije tijd oploopt door het gebruik van deze plugin.
+
+
+
+</body>
+</html>
+
