@@ -7,6 +7,7 @@
 // @include http://*sis.hva.nl:8011/*
 // @include https://*sis.hva.nl:8011/*
 // @include https://home.informatica.hva.nl/assissed/*
+// @include http://home.informatica.hva.nl/assissed/*
 // @run-at document-end
 // ==/UserScript==
 
@@ -74,7 +75,8 @@ function main() {
 						if( idtd.length > 0 )
 						{
 							setcount += 1
-							var input = $(".PSEDITBOX", idtd.closest( "tr" ) );
+							//24april: added first. HvA can have editable dates
+							var input = $(".PSEDITBOX:first", idtd.closest( "tr" ) );
 							input.val( grade );
 							input.css("border","1px solid blue");
 						}

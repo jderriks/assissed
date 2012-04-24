@@ -6,6 +6,8 @@
 // @include https://*sis.uva.nl/*
 // @include http://*sis.uva.nl:8011/*
 // @include https://*sis.uva.nl:8011/*
+// @include https://home.informatica.hva.nl/assissed/*
+// @include http://home.informatica.hva.nl/assissed/*
 // @run-at document-end
 // ==/UserScript==
 
