@@ -28,7 +28,7 @@ function addJQuery(callback) {
 function main() {
 
 	// Show assissed version on login page
-	var assissedVersion = "Assissed1.2.5HvA";
+	var assissedVersion = "Assissed1.3HvA";
 	var but = $("input.psloginbutton");
 	but.css("border","3px solid green");
 	but.attr("value",assissedVersion);
