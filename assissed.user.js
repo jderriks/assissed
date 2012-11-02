@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name asSiSsed
-// @version 1.2.5HvA
+// @version 1.3HvA
 // @author Koen Bollen & Jan Derriks
 // @include http://*sis.hva.nl/*
 // @include https://*sis.hva.nl/*
@@ -12,6 +12,7 @@
 // ==/UserScript==
 
 // April 19, 2012  changed csv format from "," into ";". Now decimals in grades are allowed too 
+// November 1, 2012 check overlap pasted+existing grades in grade roster. And fix Fraijlemaborg problem. 
 
 function addJQuery(callback) {
   var script = document.createElement("script");
@@ -37,8 +38,10 @@ function main() {
 
 	function insertPasteArea() {
 		if( !document.getElementById( "dropzone" ) )
-		{
-			var table = $("span:contains(Sessie)").closest("table");
+		{			
+			//var table = $("span:contains(Sessie)").closest("table");  //Werkte niet bij International Business & Administration op de Hva (Fraijlemaborg)
+			var table = $("div[id=win0div$ICField114]");		
+
 			var html = "";
 			html += "<div id='dropzone' title='Liefs, Koen &amp; Jan' style='margin:20px;font-family: Arial,sans-serif;font-size:11px;'><span class='PATRANSACTIONTITLE'>asSiSsed</span>";
 			html += "Klik eerst op 'Alles Tonen' en plak dan studnr;cijfer regels hier:<br/><textarea id='dropzone_text' style='float:left;width:450px;height:100px;'></textarea>";
@@ -58,6 +61,7 @@ function main() {
 
 				var total = 0;
 				var setcount = 0;
+				var warncount = 0;
 				$.each(lines, function() {
 					var fields = this.split(";");
 					if( fields.length == 2 )
@@ -71,14 +75,20 @@ function main() {
 						}
 						total += 1;
 						var idtd = $("span.PSEDITBOX_DISPONLY[innerHTML="+id+"]");
-						idtd.css("border","1px solid green"); // show selected id
 						if( idtd.length > 0 )
 						{
-							setcount += 1
+							idtd.css("border","1px solid green"); // show selected id												
 							//24april: added first. HvA can have editable dates
 							var input = $(".PSEDITBOX:first", idtd.closest( "tr" ) );
-							input.val( grade );
-							input.css("border","1px solid blue");
+							//nov 2012: don't paste to non-empty cells
+							if (input.val() != ""){
+								input.css("border","4px solid red"); //feedback: fat red box
+								warncount += 1;
+							} else {
+								input.val( grade );
+								setcount += 1;
+								input.css("border","1px solid green");
+							}
 						}
 						else
 						{
@@ -87,6 +97,9 @@ function main() {
 					}
 				});
 				$("#droplog").append( "<font color=green>" + setcount + " cijfer"+(setcount!=1?"s":"")+" ingevoerd van de " + total + "</font><br /><br />" );
+				if (warncount > 0){
+					$("#droplog").append( "<font color=red>" + warncount + " cijfers overlappen bestaande. Zie rode vakken.</font><br /><br />" );
+				}
 				$("#droplog").attr({ scrollTop: $("#droplog").attr("scrollHeight") });
 			});
 		}
